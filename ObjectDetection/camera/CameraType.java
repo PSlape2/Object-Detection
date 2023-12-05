@@ -5,7 +5,7 @@ package ObjectDetection.camera;
  */
 public enum CameraType {
     /**
-     * Represents the Apple IPhone 12 Mini
+     * Represents the Apple IPhone 12 Mini. Corresponds to the IPhone12Mini class.
      */
     APPLE_12M
 }

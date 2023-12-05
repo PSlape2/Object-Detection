@@ -6,7 +6,6 @@ import ObjectDetection.util.UnevenMatrix;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 
@@ -16,22 +15,43 @@ public class Processor {
     private int pixelsPerGroup;
     private UnevenMatrix pixelGroups;
 
+    /**
+     * Creates a new image Processor
+     * 
+     * @param camera    The Camera being used to process information about the image.
+     * @param pixels    The number of pixels in a PixelGroup.
+     * @param file      The File which the image is stored at.
+     */
     public Processor(Camera camera, int pixels, File file) {
         this.camera = camera;
         pixelsPerGroup = pixels;
         setImage(file);
 
         pixelGroups = new UnevenMatrix(image.getWidth() / pixels, image.getHeight() / pixels);
+        process();
     }
 
+    /**
+     * Creates a new image Processor
+     * 
+     * @param cameraType    The CameraType representing the Camera being used to process information about the image.
+     * @param pixels        The number of pixels in a PixelGroup.
+     * @param file          The File which the image is stored at.
+     */
     public Processor(CameraType cameraType, int pixels, File file) {
         camera = Camera.getCamera(cameraType);
         pixelsPerGroup = pixels;
         setImage(file);
 
         pixelGroups = new UnevenMatrix(image.getWidth() / pixels, image.getHeight() / pixels);
+        process();
     }
 
+    /**
+     * Sets the image being processed
+     * 
+     * @param file The File which the image is stored at.
+     */
     public void setImage(File file) {
         try {
             image = ImageIO.read(file);
@@ -41,13 +61,22 @@ public class Processor {
     }
 
     public Camera getCamera() { return camera; }
+    public void setCamera(Camera camera) { this.camera = camera; }
+    public void setCamera(CameraType cameraType) { camera = Camera.getCamera(cameraType); }
 
     public BufferedImage getImage() { return image; }
+    public void setImage(BufferedImage image) { this.image = image; }
+
+    public int getPixelsPerGroup() { return pixelsPerGroup; }
+    public void setPixelsPerGroup(int pixels) { pixelsPerGroup = pixels; }
 
     public Pair getDimensions() {
         return new Pair(image.getWidth(), image.getHeight());
     }
 
+    /**
+     * Processes the image into PixelGroups, then stores them in the UnevenMatrix called pixelGroups.
+     */
     public void process() {
         for(int x = 0; x < image.getWidth(); x += pixelsPerGroup) {
             for(int y = 0; y < image.getHeight(); y += pixelsPerGroup) {
@@ -59,6 +88,14 @@ public class Processor {
         }
     }
 
+    /**
+     * Finds the average RGB values for a PixelGroup.
+     * 
+     * @param x     The starting x coordinate pixel in the image.
+     * @param y     The starting y coordinate pixel in the image.
+     * 
+     * @return      The average color of the PixelGroup in bits.
+     */
     public int getAverageColor(int x, int y) {
         int[] colorBits = new int[pixelsPerGroup];
         int[] alpha = new int[pixelsPerGroup];

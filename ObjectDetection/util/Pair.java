@@ -1,5 +1,8 @@
 package ObjectDetection.util;
 
+/*
+ * Associates two Objects in a pair.
+ */
 public class Pair {
     public final Object x, y;
 

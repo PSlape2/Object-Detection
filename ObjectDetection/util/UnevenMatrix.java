@@ -21,6 +21,11 @@ public class UnevenMatrix {
         }
     }
 
+    /**
+     * Adds a new PixelGroup to the matrix.
+     * 
+     * @param pixelGroup The PixelGroup to add to the matrix.
+     */
     public void add(PixelGroup pixelGroup) {
         try {
             Pair locPair = pixelGroup.getLocation();
@@ -33,6 +38,13 @@ public class UnevenMatrix {
         }
     }
 
+    /**
+     * Gets the PixelGroup at a certain (x, y) coordinate.
+     * 
+     * @param x     The x coordinate of the PixelGroup.
+     * @param y     The y coordinate of the PixelGroup.
+     * @return      The PixelGroup at (x, y).
+     */
     public PixelGroup get(int x, int y) {
         try {
             return groups[x].get(y);
