@@ -30,24 +30,63 @@ public class PixelGroup {
      * @param location The Pair of points which the PixelGroup exists in a matrix of PixelGroups.
      */
     public PixelGroup(float r, float g, float b, float a, Pair location) {
-        this.averageColor = new Color(r, g, b, a);
+        averageColor = new Color(r, g, b, a);
         this.location = location;
     }
 
+    /**
+     * Creates a new PixelGroup with an int containing the bits for RGB and a Pair with 2 points.
+     * @param colorAsBits   The bits representing the color of the pixel group.
+     * @param location      The Pair of points which the PixelGroup exists in a matrix of PixelGroups
+     */
     public PixelGroup(int colorAsBits, Pair location) {
-        this.averageColor = new Color(colorAsBits);
+        averageColor = new Color(colorAsBits);
         this.location = location;
     }
 
+    /**
+     * Creates a new PixelGroup with an int containing the bits for RGB and a Pair with 2 points.
+     * @param colorAsBits   The bits representing the color of the pixel group.
+     * @param hasAlpha      Indicates whether or not the previous variable includes transparency.
+     * @param location      The Pair of points which the PixelGroup exists in a matrix of PixelGroups
+     */
     public PixelGroup(int colorAsBits, boolean hasAlpha, Pair location) {
-        this.averageColor = new Color(colorAsBits, hasAlpha);
+        averageColor = new Color(colorAsBits, hasAlpha);
         this.location = location;
     }
 
+    public PixelGroup(float r, float g, float b) {
+        averageColor = new Color(r, g, b);
+        location = null;
+    }
+
+    public PixelGroup(float r, float g, float b, float a) {
+        averageColor = new Color(r, g, b, a);
+        location = null;
+    }
+
+    public PixelGroup(int colorAsBits) {
+        averageColor = new Color(colorAsBits);
+        location = null;
+    }
+
+    public PixelGroup(int colorAsBits, boolean hasAlpha) {
+        averageColor = new Color(colorAsBits, hasAlpha);
+        location = null;
+    }
+
+    /**
+     * Gets the color of the PixelGroup
+     * @return  The color of the PixelGroup as an java.awt.Color object.
+     */
     public Color getColor() {
         return averageColor;
     }
 
+    /**
+     * Gets the position of the PixelGroup.
+     * @return  The position of the PixelGroup as an ObjectDetection.util.Pair object.
+     */
     public Pair getLocation() {
         return location;
     }
