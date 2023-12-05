@@ -21,7 +21,7 @@ public class Camera {
         this(0, 0, 0);
     }
 
-    public Camera getCamera(CameraType type) {
+    public static Camera getCamera(CameraType type) {
         switch(type) {
             case APPLE_12M:
                 return new IPhone12Mini();

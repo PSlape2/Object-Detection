@@ -55,11 +55,17 @@ public class PixelGroup {
         this.location = location;
     }
 
+    public PixelGroup(Color color, Pair location) {
+        averageColor = color;
+        this.location = location;
+    }
+
+    /*
     public PixelGroup(float r, float g, float b) {
         averageColor = new Color(r, g, b);
         location = null;
     }
-
+    
     public PixelGroup(float r, float g, float b, float a) {
         averageColor = new Color(r, g, b, a);
         location = null;
@@ -74,6 +80,9 @@ public class PixelGroup {
         averageColor = new Color(colorAsBits, hasAlpha);
         location = null;
     }
+    */
+
+    
 
     /**
      * Gets the color of the PixelGroup
@@ -93,7 +102,7 @@ public class PixelGroup {
 
     /**
      * Returns the RGB value representing the color of the pixel group. 
-     * According to Java docs, bits 24-31 are alpha, 8-15 are green, 0-7 are blue.
+     * According to Java docs, bits 24-31 are alpha, 16-23 are red, 8-15 are green, 0-7 are blue.
      * @return The color of the PixelGroup as bits.
      */
     public int getColorAsBits() {
